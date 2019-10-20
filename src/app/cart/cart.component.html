@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div>
+  <h3>Cart</h3>
+  <p>Number of selected items: {{ value }}</p>
+  <p>Total purchase amount: {{ sum }}</p>
+  <button mat-raised-button (click)="clearCart(); onClickMe()">Delete</button>
+  <div class="message">{{clickMessage}}</div>
+  <div class="items">
+    <div class="item" *ngFor="let item of items">
+      <div>{{ item.name }}</div>
+      <div>{{ item.price | currency }}</div>
+    </div>
+  </div>
+</div>

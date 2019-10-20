@@ -1,0 +1,32 @@
+<form  [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+  <h2>Sign in</h2>
+  <mat-form-field [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
+    <input matInput placeholder="Enter email" type="email" id="email" formControlName="email" (oninput)="showEmail()">
+  </mat-form-field>
+  <span *ngIf="form.get('email').invalid && form.get('email').touched">
+    <span *ngIf="form.get('email')['errors']['required']">
+      Email cannot be empty
+    </span>
+    <span *ngIf="form.get('email')['errors']['email']">
+      Invalid email
+    </span>
+  </span>
+
+  <mat-form-field [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+    <input matInput placeholder="Enter password" type="password" id="password" formControlName="password">
+  </mat-form-field>
+  <span *ngIf="form.get('password').invalid && form.get('password').touched">
+    <span *ngIf="form.get('password')['errors']['required']">
+      Password cannot be empty
+    </span>
+    <span *ngIf="form.get('password')['errors']['minlength']">
+      Password must be more than
+      {{ form.get('password')['errors']['minlength']['requiredLength'] }}
+      characters. Now {{ form.get('password')['errors']['minlength']['actualLength'] }}.
+    </span>
+  </span>
+  <button mat-stroked-button type="submit" [disabled]="form.invalid" (click)="goToPage('store'); changeAuthStatus('login')">submit</button>
+  <div class="reset-link">
+    <a routerLink="reset-password/">Reset password link</a>
+  </div>
+</form>

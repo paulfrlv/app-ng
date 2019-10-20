@@ -1,0 +1,38 @@
+<form [formGroup]="resetForm" class="resetForm" (ngSubmit)="onSubmit()">
+  <h2>Reset password</h2>
+
+  <mat-form-field [ngClass]="{'has-error': resetForm.get('password').invalid && resetForm.get('password').touched}">
+    <input matInput placeholder="Enter password" type="password" id="password" formControlName="password">
+  </mat-form-field>
+  <span *ngIf="resetForm.get('password').invalid && resetForm.get('password').touched">
+    <span *ngIf="resetForm.get('password')['errors']['required']">
+      Password cannot be empty
+    </span>
+    <span *ngIf="resetForm.get('password')['errors']['minlength']">
+      Password must be more than
+      {{ resetForm.get('password')['errors']['minlength']['requiredLength'] }}
+      characters. Now {{ resetForm.get('password')['errors']['minlength']['actualLength'] }}.
+    </span>
+  </span>
+
+  <mat-form-field [ngClass]="{'has-error': resetForm.get('password').invalid && resetForm.get('password').touched}">
+    <input matInput placeholder="Re-enter password" type="password" id="confirm-password" formControlName="confirm-password">
+  </mat-form-field>
+  <span *ngIf="resetForm.get('confirm-password').invalid && resetForm.get('confirm-password').touched">
+    <span *ngIf="resetForm.get('confirm-password')['errors']['required']">
+      Password cannot be empty
+    </span>
+    <span *ngIf="resetForm.get('confirm-password')['errors']['minlength']">
+      Password must be more than
+      {{ resetForm.get('confirm-password')['errors']['minlength']['requiredLength'] }}
+      characters. Now {{ resetForm.get('confirm-password')['errors']['minlength']['actualLength'] }}.
+    </span>
+  </span>
+
+  <span *ngIf="resetForm.get('password')['value'] != resetForm.get('confirm-password')['value']">
+    Passwords do not match
+  </span>
+  <button mat-stroked-button type="submit" [disabled]="resetForm.get('password')['value'] != resetForm.get('confirm-password')['value']"
+        (click)="goToPage('login'); changeAuthStatus('logout')" >submit
+  </button>
+</form>

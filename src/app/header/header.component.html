@@ -1,0 +1,11 @@
+<div class="header">
+  <div>
+    <a routerLink="/store" routerLinkActive="active">Store</a>
+  </div>
+  <div>
+    <a routerLink="/cart" routerLinkActive="active">
+      Cart
+    </a>
+  </div>
+  <button mat-stroked-button (click)="goToPage(''); changeAuthStatus('')">Log out</button>
+</div>

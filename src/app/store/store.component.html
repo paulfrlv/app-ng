@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div class="store">
+  <h3>
+    Products
+  </h3>
+  <div class="products">
+    <div *ngFor="let product of products" class="product">
+      <p class="name">{{ product.name }}</p>
+      <p class="price">Price: {{ product.price | currency }}</p>
+      <button mat-raised-button class="button" (click)="addToCart(product)">Add to cart</button>
+    </div>
+  </div>
+</div>
